@@ -1,17 +1,17 @@
 /*
 
-	Package:    GeekTools Whois Java Client 1.0
+	Package:    GeekTools Whois Java Client 1.0.1
 	File:       Whois.java (Java source file)
 	Author:     Erik C. Thauvin <erik@skytouch.com>
 	Comments:   Part of the GeekTools Whois Java Client package.
 				See the README.TXT file for more information.
 
-	Copyright (C) 2000 SkyTouch Communications. All Rights Reserved.
+	Copyright (C) 2000-2001 SkyTouch Communications. All Rights Reserved.
 
 	This program is distributed under the terms of the GNU General
 	Public License as published by the Free Software Foundation.
 	See the COPYING.TXT file for more information.
-	
+
 	$Id$
 
 */
@@ -21,16 +21,28 @@ import java.io.*;
 import java.util.Properties;
 
 
+/**
+ * Class Whois
+ *
+ *
+ * @author Erik C. Thauvin (erik@skytouch.com)
+ * @version 1.0.1    
+ */
 public class Whois
 {
-	// The truth is out there!
+	/**
+	 * Method main
+	 *
+	 * The Truth is Out There!
+	 *
+	 * @param args Command line arguments
+	 */
 	public static void main(String[] args)
 	{
 		// Display usage if there are no command line arguments
 		if (args.length < 1)
 		{
-			System.out.println(
-				"Usage: java Whois query[@<whois.server>]");
+			System.out.println("Usage: java Whois query[@<whois.server>]");
 
 			return;
 		}
@@ -43,8 +55,7 @@ public class Whois
 		// Load the properties file.
 		try
 		{
-			FileInputStream in =
-				new FileInputStream("Whois.properties");
+			FileInputStream in = new FileInputStream("Whois.properties");
 			Properties app = new Properties();
 
 			app.load(in);
@@ -53,11 +64,9 @@ public class Whois
 			server = (app.getProperty("server", server));
 
 			// Get the port property
-			String tmp = app.getProperty("port");
-
 			try
 			{
-				port = Integer.parseInt(tmp);
+				port = Integer.parseInt(app.getProperty("port"));
 			}
 			catch (NumberFormatException e)
 			{
@@ -72,19 +81,20 @@ public class Whois
 		}
 		catch (IOException e)
 		{
-			System.err.println(
-				"Whois: an error occurred while loading the properties file: "
-				+ e);
+			System.err.println("Whois: an error occurred while loading the properties file: " + e);
 		}
 
 		// Build the whois query using command line arguments
-		String query = args[0];
+		StringBuffer buff = new StringBuffer(args[0]);
 
 		for (int i = 1; i < args.length; i++)
 		{
-			query += (" " + args[i]);
+			buff.append(" " + args[i]);
 		}
 
+		// Convert string buffer to string
+		String query = buff.toString();
+		
 		// The whois server can be specified after "@"
 		// e.g.: query@whois.networksolutions.com
 		int at = query.lastIndexOf("@");
@@ -111,11 +121,8 @@ public class Whois
 		{
 			// Establish connection to whois server & port
 			Socket connection = new Socket(server, port);
-			PrintStream out =
-				new PrintStream(connection.getOutputStream());
-			BufferedReader in = new BufferedReader(
-				new InputStreamReader(
-					connection.getInputStream()));
+			PrintStream out = new PrintStream(connection.getOutputStream());
+			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String line = "";
 
 			// Send the whois query

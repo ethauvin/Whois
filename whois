@@ -1,12 +1,12 @@
 #!/bin/sh
 
-# Package:   GeekTools Whois Java Client 1.0
+# Package:   GeekTools Whois Java Client 1.0.1
 # File:      whois (Bourne shell script)
 # Author:    Erik C. Thauvin <erik@skytouch.com>
 # Comments:  Part of the GeekTools Whois Java Client package. See
 #            the README.TXT file for more information.
 # 
-# Copyright (C) 2000 SkyTouch Communications - All Rights Reserved
+# Copyright (C) 2000-2001 SkyTouch Communications - All Rights Reserved
 # 
 # This program is distributed under the terms of the GNU General
 # Public License as published by the Free Software Foundation.
@@ -26,31 +26,36 @@ then
 	JAVA_EXE=/bin/java
 	if [ "$JAVA_PATH" = "" ]
 	then
-		# Linux JDK
-		JAVA_PATH=/usr/java/jdk1.3
+		# Linux JDK 1.3.0_01
+		JAVA_PATH=/usr/java/jdk1.3.0_01
 		if [ ! -x ${JAVA_PATH}${JAVA_EXE} ]
 		then
-			# Linux JRE
-			JAVA_PATH=/usr/java/jre1.3
+			# Linux JDK 1.3
+			JAVA_PATH=/usr/java/jdk1.3
 			if [ ! -x ${JAVA_PATH}${JAVA_EXE} ]
 			then
-				# Solaris JDK
-				JAVA_PATH=/usr/j2se
+				# Linux JRE
+				JAVA_PATH=/usr/java/jre1.3
 				if [ ! -x ${JAVA_PATH}${JAVA_EXE} ]
 				then
-					# Solaris JRE
-					JAVA_PATH=/usr/j2se/jre
+					# Solaris JDK
+					JAVA_PATH=/usr/j2se
 					if [ ! -x ${JAVA_PATH}${JAVA_EXE} ]
 					then
-						# Mac OS X
-						JAVA_PATH=
-						JAVA_EXE=/System/Library/Frameworks/JavaVM.framework/Versions/1.2/Commands/java
-						if [ ! -x ${JAVA_EXE} ]
+						# Solaris JRE
+						JAVA_PATH=/usr/j2se/jre
+						if [ ! -x ${JAVA_PATH}${JAVA_EXE} ]
 						then
-							JAVA_EXE=`which java`
-							if [ ! -x $JAVA_EXE ]
+							# Mac OS X
+							JAVA_PATH=
+							JAVA_EXE=/System/Library/Frameworks/JavaVM.framework/Versions/1.2/Commands/java
+							if [ ! -x ${JAVA_EXE} ]
 							then
-								JAVA_EXE=java
+								JAVA_EXE=`which java`
+								if [ ! -x $JAVA_EXE ]
+								then
+									JAVA_EXE=java
+								fi
 							fi
 						fi
 					fi

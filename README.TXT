@@ -1,7 +1,7 @@
                                 README
 
                        GeekTools Whois Java Client
-                              Version 1.0
+                              Version 1.0.1
 
 GeekTools Whois Java Client is a finger-style whois which uses the GeekTools
 Whois Proxy server (<whois.geektools.com>) provided by CenterGate Research
@@ -126,4 +126,4 @@ Similarly, to change the default port from 43 to 46:
 
 
 
-Copyright (C) 2000 by SkyTouch Communications. All Rights Reserved.
+Copyright (C) 2000-2001 by SkyTouch Communications. All Rights Reserved.

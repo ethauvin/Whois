@@ -1,12 +1,12 @@
 @echo off
 
-rem Package:   GeekTools Whois Java Client 1.0
+rem Package:   GeekTools Whois Java Client 1.0.1
 rem File:      whois.bat (Batch file)
 rem Author:    Erik C. Thauvin <erik@skytouch.com>
 rem Comments:  Part of the GeekTools Whois Java Client package.
 rem            See the README.TXT file for more information.
 rem 
-rem Copyright (C) 2000 SkyTouch Communications - All Rights Reserved
+rem Copyright (C) 2000-2001 SkyTouch Communications - All Rights Reserved
 rem
 rem This program is distributed under the terms of the GNU General
 rem Public License as published by the Free Software Foundation.
