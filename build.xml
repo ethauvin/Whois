@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<project name="whois" default="all" basedir=".">
+	<description>
+    GeekTools Whois Java Client
+    Ant Build Script
+	</description>
+	
+	<property name="name" value="Whois"/>
+	<property name="main" value="Whois"/>
+	
+	<target	name="bin"
+			description="Compile source files">
+		<javac srcdir="${basedir}"/>
+	</target>
+	
+	<target	name="jar" depends="bin"
+			description="Build jar file">
+		<jar jarfile="${name}.jar" manifest="MANIFEST.MF">
+    		<fileset dir="${basedir}" includes="*.class"/>
+		</jar>
+	</target>
+	
+	<target	name="run" depends="jar"
+			description="Run the program">
+		<java jar="${name}.jar" fork="true">
+			<arg value="skytouch.com"/>
+		</java>
+	</target>
+	
+	<target	name="clean"
+			description="Clean generated files">
+		<delete>
+			<fileset dir="${basedir}">
+  				<include name="${name}.jar"/>
+  				<include name="${name}.class"/>
+			</fileset>
+		</delete>
+	</target>
+	
+	<target name="all" depends="clean,jar"/>
+</project>
