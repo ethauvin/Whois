@@ -1,3 +1,3 @@
 all:
-	javac -O Whois.java
+	javac Whois.java
 	jar cvfm Whois.jar MANIFEST.MF Whois.class
