@@ -1,32 +1,28 @@
 /*
-
-	Package:    GeekTools Whois Java Client 1.0.1
-	File:       Whois.java (Java source file)
-	Author:     Erik C. Thauvin <erik@skytouch.com>
-	Comments:   Part of the GeekTools Whois Java Client package.
-				See the README.TXT file for more information.
-
-	Copyright (C) 2000-2001 SkyTouch Communications. All Rights Reserved.
-
-	This program is distributed under the terms of the GNU General
-	Public License as published by the Free Software Foundation.
-	See the COPYING.TXT file for more information.
-
-	$Id$
-
-*/
+ *  Package:    GeekTools Whois Java Client 1.0.2
+ *  File:       Whois.java (Java source file)
+ *  Author:     Erik C. Thauvin <erik@skytouch.com>
+ *  Comments:   Part of the GeekTools Whois Java Client package.
+ *
+ *  See the README.TXT file for more information.
+ *
+ *  Copyright (C) 2000-2001 SkyTouch Communications. All Rights Reserved.
+ *  This program is distributed under the terms of the GNU General
+ *  Public License as published by the Free Software Foundation.
+ *  See the COPYING.TXT file for more information.
+ *
+ *  $Id$
+ */
+import java.io.*;
 
 import java.net.Socket;
-import java.io.*;
 import java.util.Properties;
-
 
 /**
  * Class Whois
  *
- *
  * @author Erik C. Thauvin (erik@skytouch.com)
- * @version 1.0.1    
+ * @version 1.0.2
  */
 public class Whois
 {
@@ -49,14 +45,15 @@ public class Whois
 
 		// Default server is whois.geektools.com
 		String server = "whois.geektools.com";
+
 		// Default server port is 43
 		int port = 43;
 
 		// Load the properties file.
 		try
 		{
-			FileInputStream in = new FileInputStream("Whois.properties");
-			Properties app = new Properties();
+			final FileInputStream in = new FileInputStream("Whois.properties");
+			final Properties app = new Properties();
 
 			app.load(in);
 
@@ -85,7 +82,7 @@ public class Whois
 		}
 
 		// Build the whois query using command line arguments
-		StringBuffer buff = new StringBuffer(args[0]);
+		final StringBuffer buff = new StringBuffer(args[0]);
 
 		for (int i = 1; i < args.length; i++)
 		{
@@ -94,11 +91,11 @@ public class Whois
 
 		// Convert string buffer to string
 		String query = buff.toString();
-		
+
 		// The whois server can be specified after "@"
 		// e.g.: query@whois.networksolutions.com
-		int at = query.lastIndexOf("@");
-		int len = query.length();
+		final int at = query.lastIndexOf("@");
+		final int len = query.length();
 
 		if ((at != -1))
 		{
@@ -120,9 +117,11 @@ public class Whois
 		try
 		{
 			// Establish connection to whois server & port
-			Socket connection = new Socket(server, port);
-			PrintStream out = new PrintStream(connection.getOutputStream());
-			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			final Socket connection = new Socket(server, port);
+			final PrintStream out =
+					new PrintStream(connection.getOutputStream());
+			final BufferedReader in = new BufferedReader(
+					new InputStreamReader(connection.getInputStream()));
 			String line = "";
 
 			// Send the whois query
